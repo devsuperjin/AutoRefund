@@ -1,0 +1,139 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "4a728883-8044-416c-96ea-2303957c3505": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 500,
+                    "y": 70
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "6f112f22-0231-4aca-88a5-4f42c17a55e2": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 334,
+                    "y": 99
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "4a728883-8044-416c-96ea-2303957c3505"
+                ]
+            },
+            "07c20ea7-136d-433b-bf71-50b4c7d9636a": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 470,
+                    "y": 160
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "4a728883-8044-416c-96ea-2303957c3505"
+                ]
+            },
+            "3a30673e-fc72-4df2-9ae1-3f2df20fba3c": {
+                "source": {
+                    "id": "6f112f22-0231-4aca-88a5-4f42c17a55e2"
+                },
+                "target": {
+                    "id": "4a728883-8044-416c-96ea-2303957c3505"
+                },
+                "z": 1
+            },
+            "6a8dedfb-b583-4787-806d-109351497afd": {
+                "source": {
+                    "id": "07c20ea7-136d-433b-bf71-50b4c7d9636a"
+                },
+                "target": {
+                    "id": "4a728883-8044-416c-96ea-2303957c3505"
+                },
+                "z": 2
+            }
+        }
+    },
+    "Resources": {
+        "efs": {
+            "Type": "AWS::EFS::FileSystem",
+            "Properties": {
+                "FileSystemTags": [
+                    {
+                        "Key": "Name",
+                        "Value": "EFS"
+                    }
+                ],
+                "PerformanceMode": "generalPurpose"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "4a728883-8044-416c-96ea-2303957c3505"
+                }
+            }
+        },
+        "mount1": {
+            "Type": "AWS::EFS::MountTarget",
+            "Properties": {
+                "SecurityGroups": [
+                    {
+                        "Ref": "dbgroupid"
+                    }
+                ],
+                "SubnetId": {
+                    "Ref": "dbnet1id"
+                },
+                "FileSystemId": {
+                    "Ref": "efs"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6f112f22-0231-4aca-88a5-4f42c17a55e2"
+                }
+            }
+        },
+        "mount2": {
+            "Type": "AWS::EFS::MountTarget",
+            "Properties": {
+                "SecurityGroups": [
+                    {
+                        "Ref": "dbgroupid"
+                    }
+                ],
+                "SubnetId": {
+                    "Ref": "dbnet2id"
+                },
+                "FileSystemId": {
+                    "Ref": "efs"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "07c20ea7-136d-433b-bf71-50b4c7d9636a"
+                }
+            }
+        }
+    },
+    "Parameters": {
+        "dbgroupid": {
+            "Type": "String"
+        },
+        "dbnet1id": {
+            "Type": "String"
+        },
+        "dbnet2id": {
+            "Type": "String"
+        }
+    }
+}
