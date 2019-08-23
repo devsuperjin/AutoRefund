@@ -1,3 +1,1 @@
-# AutoRefund
-AWS GameDay!!!!!
-Powerd by superjin
+Best Practices template
